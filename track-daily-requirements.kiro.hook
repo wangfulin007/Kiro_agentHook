@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "name": "需求追踪记录",
+  "description": "在每次提交prompt时，记录prompt内容到文档中，方便每天整理需求",
+  "version": "1",
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "powershell -Command \"$time = Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff'; $prompt = $env:USER_PROMPT; $content = '[{0}] {1}' -f $time, $prompt; [IO.File]::AppendAllText('03-docs/daily-requirements.md', $content + [Environment]::NewLine, [System.Text.Encoding]::UTF8)\""
+  },
+  "workspaceFolderName": "MKLSYS",
+  "shortName": "track-daily-requirements"
+}
