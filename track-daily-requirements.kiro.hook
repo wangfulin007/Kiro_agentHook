@@ -8,7 +8,7 @@
   },
   "then": {
     "type": "runCommand",
-    "command": "powershell -Command \"$time = Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff'; $prompt = $env:USER_PROMPT; $content = '[{0}] {1}' -f $time, $prompt; [IO.File]::AppendAllText('03-docs/daily-requirements.md', $content + [Environment]::NewLine, [System.Text.Encoding]::UTF8)\""
+    "command": "powershell -Command \"$time = Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff'; $hourFile = Get-Date -Format 'yyyy-MM-dd-HH'; $prompt = $env:USER_PROMPT; $content = '[{0}] {1}' -f $time, $prompt; $filePath = '03-docs/DR/dr-{0}.md' -f $hourFile; [IO.File]::AppendAllText($filePath, $content + [Environment]::NewLine, [System.Text.Encoding]::UTF8)\""
   },
   "workspaceFolderName": "MKLSYS",
   "shortName": "track-daily-requirements"
